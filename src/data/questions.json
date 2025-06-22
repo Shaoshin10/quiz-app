@@ -1,0 +1,8 @@
+[
+  {
+    "id": 1,
+    "text": "SLAM steht für Simultaneous Localization and Mapping.",
+    "correct": true,
+    "explanation": "Bei SLAM wird gleichzeitig eine Karte erstellt und der Standort geschätzt."
+  }
+]
