@@ -1,122 +1,122 @@
 [
   {
-    "id": 201,
-    "text": "Was versteht man unter Forward und Inverse Kinematics?",
-    "correct": true,
-    "explanation": "Forward Kinematics berechnet die Position des Endeffektors aus Gelenkwinkeln, Inverse Kinematics ermittelt die Gelenkwinkel für eine gewünschte Endposition."
+    "id": 301,
+    "text": "Forward Kinematics berechnet die Gelenkwinkel aus der Endposition.",
+    "correct": false,
+    "explanation": "Forward Kinematics berechnet die Endposition aus gegebenen Gelenkwinkeln – nicht umgekehrt."
   },
   {
-    "id": 202,
-    "text": "Wofür wird der Kalman-Filter in der mobilen Robotik eingesetzt?",
+    "id": 302,
+    "text": "Der Kalman-Filter wird in der mobilen Robotik zur Lokalisierung eingesetzt.",
     "correct": true,
-    "explanation": "Zur Lokalisierung eines Roboters – er kombiniert Vorhersage und Sensordaten zu einer geschätzten Position mit Unsicherheit."
+    "explanation": "Der Kalman-Filter kombiniert Vorhersage und Sensordaten, um die Position eines Roboters zu schätzen."
   },
   {
-    "id": 203,
-    "text": "Warum sind Sensorfusion und Unsicherheitsmodellierung wichtig für SLAM?",
-    "correct": true,
-    "explanation": "Sie ermöglichen es, verschiedene Sensordaten zu integrieren und deren Unsicherheit korrekt zu berücksichtigen, um zuverlässige Karten und Positionen zu erhalten."
+    "id": 303,
+    "text": "Sensorfusion ist für SLAM irrelevant.",
+    "correct": false,
+    "explanation": "Sensorfusion ist essenziell für SLAM, um verschiedene Sensordaten zu integrieren und Unsicherheit zu berücksichtigen."
   },
   {
-    "id": 204,
-    "text": "Was sind typische Wahrnehmungsaufgaben für Roboter?",
+    "id": 304,
+    "text": "Objekterkennung gehört zu den typischen Wahrnehmungsaufgaben eines Roboters.",
     "correct": true,
-    "explanation": "Objekterkennung, Lokalisierung, Umgebungswahrnehmung, Personenerkennung – jeweils mit passenden Sensoren wie Kamera, Lidar oder Mikrofonen."
+    "explanation": "Wahrnehmung umfasst u.a. Objekterkennung, Lokalisierung und Umgebungserfassung."
   },
   {
-    "id": 205,
-    "text": "Wie unterscheiden sich ROS1 und ROS2?",
-    "correct": true,
-    "explanation": "ROS2 basiert auf DDS, ist robuster, unterstützt echte Parallelität und Echtzeitkommunikation – daher besser für industrielle Anwendungen."
+    "id": 305,
+    "text": "ROS1 unterstützt Echtzeitkommunikation und ist moderner als ROS2.",
+    "correct": false,
+    "explanation": "ROS2 basiert auf DDS und unterstützt echte Parallelität und Echtzeit – damit moderner als ROS1."
   },
   {
-    "id": 206,
-    "text": "Welche Rolle spielt Hyperparameter-Tuning im Reinforcement Learning?",
-    "correct": true,
-    "explanation": "Hyperparameter wie Lernrate und Epsilon beeinflussen stark die Qualität und Geschwindigkeit des Lernprozesses."
+    "id": 306,
+    "text": "Hyperparameter im Reinforcement Learning haben keinen Einfluss auf das Lernen.",
+    "correct": false,
+    "explanation": "Hyperparameter wie Lernrate und Epsilon steuern das Lernverhalten und beeinflussen Qualität und Geschwindigkeit."
   },
   {
-    "id": 207,
-    "text": "Warum ist RViz in der Turtlebot-Navigation nützlich?",
+    "id": 307,
+    "text": "RViz ist ein Tool zur Visualisierung von Roboterdaten in ROS.",
     "correct": true,
-    "explanation": "RViz visualisiert Live-Daten wie Laser-Scans, Kartierung oder Navigation – das hilft beim Debugging und der Parametereinstellung."
+    "explanation": "RViz stellt z. B. Lidar-Scans, Kartierung und Navigation grafisch dar – sehr hilfreich beim Debuggen."
   },
   {
-    "id": 208,
-    "text": "Was ist die Aufgabe des 'Global Planner' in ROS Navigation?",
-    "correct": true,
-    "explanation": "Der Global Planner berechnet einen Pfad von der aktuellen zur Zielposition basierend auf einer Karte und einem Zielpunkt."
+    "id": 308,
+    "text": "Der Global Planner in ROS berechnet lokale Bewegungen.",
+    "correct": false,
+    "explanation": "Der Global Planner plant Pfade auf globaler Ebene, der Local Planner ist für lokale Bewegungen zuständig."
   },
   {
-    "id": 209,
-    "text": "Warum ist die Perception-Action-Schleife in der Robotik entscheidend?",
+    "id": 309,
+    "text": "Die Perception-Action-Schleife beschreibt die Kopplung von Wahrnehmung und Handlung.",
     "correct": true,
-    "explanation": "Sie sorgt dafür, dass ein Roboter basierend auf Wahrnehmung Entscheidungen trifft und daraufhin handelt – Grundlage intelligenter Systeme."
+    "explanation": "Ein Roboter nimmt Informationen auf und reagiert entsprechend – diese Rückkopplung ist zentral in der Robotik."
   },
   {
-    "id": 210,
-    "text": "Was bedeutet das 'Uncanny Valley' in der Mensch-Roboter-Interaktion?",
-    "correct": true,
-    "explanation": "Ein zu menschenähnlicher, aber nicht perfekter Roboter kann bei Menschen Unbehagen oder Ablehnung hervorrufen."
+    "id": 310,
+    "text": "Das 'Uncanny Valley' beschreibt ein besonders vertrauenswürdiges Verhalten von Robotern.",
+    "correct": false,
+    "explanation": "Das 'Uncanny Valley' beschreibt die Ablehnung zu menschenähnlicher, aber nicht perfekter Robotik."
   },
   {
-    "id": 211,
-    "text": "Was versteht man unter einem Affordance in der Robotik?",
+    "id": 311,
+    "text": "Ein Affordance beschreibt, welche Funktionen ein Objekt anbietet.",
     "correct": true,
-    "explanation": "Affordance beschreibt, was ein Objekt durch seine Form und Funktion an Handlungsmöglichkeiten bietet – für Mensch oder Roboter."
+    "explanation": "Affordances sind Hinweise auf Nutzungsmöglichkeiten, die ein Objekt durch Form oder Aussehen vermittelt."
   },
   {
-    "id": 212,
-    "text": "Welche Sensoren sind typischerweise an einem TurtleBot verbaut?",
-    "correct": true,
-    "explanation": "Ein Lidar-Scanner (z.B. LDS-01/02), Kamera, IMU, eventuell Ultraschallsensoren – zur Umgebungs- und Eigenwahrnehmung."
+    "id": 312,
+    "text": "Ein TurtleBot hat typischerweise keinen Lidar-Sensor.",
+    "correct": false,
+    "explanation": "Ein TurtleBot besitzt normalerweise einen Lidar-Sensor für Navigation und Mapping."
   },
   {
-    "id": 213,
-    "text": "Was sind typische Fehlerquellen beim Setup des TurtleBot mit ROS2?",
+    "id": 313,
+    "text": "Fehler beim TurtleBot-Setup entstehen häufig durch falsche Netzwerkkonfigurationen.",
     "correct": true,
-    "explanation": "Falsche Netzwerkeinstellungen, veraltete ROS-Kommandos, fehlerhafte Pfade oder inkompatible ROS-Versionen."
+    "explanation": "Netzwerkprobleme, falsche Pfade und Versionen sind häufige Ursachen für Setup-Fehler."
   },
   {
-    "id": 214,
-    "text": "Was muss bei Deep Learning beachtet werden, wenn man mit Bilddaten arbeitet?",
-    "correct": true,
-    "explanation": "Eine geeignete Netzwerkarchitektur (z.B. CNN), große Datenmengen, korrekte Vorverarbeitung und sinnvolles Tuning sind entscheidend."
+    "id": 314,
+    "text": "Bei Deep Learning mit Bilddaten ist eine große Datenmenge unwichtig.",
+    "correct": false,
+    "explanation": "Deep Learning erfordert große, vielfältige Datensätze und sorgfältige Vorverarbeitung, um sinnvoll zu lernen."
   },
   {
-    "id": 215,
-    "text": "Was macht ein neuronales Netz in der Objekterkennung?",
+    "id": 315,
+    "text": "Neuronale Netze in der Objekterkennung arbeiten mit Merkmalsextraktion und Klassifikation.",
     "correct": true,
-    "explanation": "Es lernt, Bildmerkmale automatisch zu extrahieren und klassifiziert Objekte z. B. mit Hilfe von Bounding Boxes und Wahrscheinlichkeiten."
+    "explanation": "Sie erkennen Muster im Bild und ordnen sie vortrainierten Klassen zu – z. B. mit CNNs."
   },
   {
-    "id": 216,
-    "text": "Warum ist Natural Language Processing (NLP) wichtig für soziale Roboter?",
-    "correct": true,
-    "explanation": "NLP ermöglicht Sprachverstehen und sinnvolle Reaktionen – eine Grundvoraussetzung für natürlich wirkende Mensch-Roboter-Interaktion."
+    "id": 316,
+    "text": "NLP ist für soziale Roboter unwichtig.",
+    "correct": false,
+    "explanation": "NLP ist grundlegend, um menschliche Sprache zu verstehen und sinnvoll zu antworten."
   },
   {
-    "id": 217,
-    "text": "Wie können Roboter menschliche Emotionen in Sprache ausdrücken?",
+    "id": 317,
+    "text": "TTS-Systeme ermöglichen emotional gefärbte Sprachausgabe bei Robotern.",
     "correct": true,
-    "explanation": "Durch Veränderung von Stimmlage, Tonhöhe, Betonung und Sprechgeschwindigkeit – z. B. durch ein TTS-System mit emotionalen Parametern."
+    "explanation": "Über Tonhöhe, Lautstärke und Rhythmus kann Sprachsynthese emotional angepasst werden."
   },
   {
-    "id": 218,
-    "text": "Was ist ein 'Pick-and-Place'-Task?",
-    "correct": true,
-    "explanation": "Ein Greifroboter greift ein Objekt, bewegt es und legt es gezielt an einem anderen Ort ab – typisches Anwendungsszenario in der Industrie."
+    "id": 318,
+    "text": "Pick-and-Place ist eine einfache Form der Objektverfolgung.",
+    "correct": false,
+    "explanation": "Pick-and-Place bezieht sich auf gezieltes Greifen und Ablegen, nicht auf kontinuierliches Verfolgen."
   },
   {
-    "id": 219,
-    "text": "Welche Interaktionsformen sind in der HRI besonders wichtig?",
+    "id": 319,
+    "text": "Bewegung, Sprache und Mimik sind relevante Interaktionsformen in der HRI.",
     "correct": true,
-    "explanation": "Verbal (Sprache), visuell (Display), räumlich (Bewegung), zeitlich (Reaktionszeit) und verhaltensbasiert (Gestik, Mimik, Feedbackverhalten)."
+    "explanation": "Diese Kanäle sind für die intuitive und glaubwürdige Mensch-Roboter-Kommunikation entscheidend."
   },
   {
-    "id": 220,
-    "text": "Was macht eine gute Roboterpersönlichkeit in einer sozialen Anwendung aus?",
+    "id": 320,
+    "text": "Eine gute Roboterpersönlichkeit ist empathisch, konsistent und anwendungsbezogen.",
     "correct": true,
-    "explanation": "Sie ist situationsangemessen, verständlich, empathisch, konsistent und an den erwarteten Anwendungsbereich angepasst."
+    "explanation": "Die Persönlichkeit eines Roboters sollte zur Anwendung passen und positive Interaktion fördern."
   }
 ]
