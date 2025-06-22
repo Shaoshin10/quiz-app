@@ -1,20 +1,62 @@
 [
   {
-    "id": 999,
+    "id": 1,
     "text": "Ein RGB-Sensor liefert Tiefeninformationen.",
     "correct": false,
     "explanation": "RGB-Sensoren liefern nur Farbinformationen, keine Tiefeninformationen."
   },
   {
-    "id": 1,
+    "id": 2,
     "text": "SLAM steht für Simultaneous Localization and Mapping.",
     "correct": true,
     "explanation": "Bei SLAM wird gleichzeitig eine Karte erstellt und der Standort geschätzt."
   },
   {
-    "id": 2,
+    "id": 3,
     "text": "Ein Roboter mit sechs Freiheitsgraden kann sich nur drehen.",
     "correct": false,
     "explanation": "Er kann sich drehen und bewegen – Translation + Rotation."
+  },
+  {
+    "id": 4,
+    "text": "Inverse Kinematik berechnet die Gelenkwinkel zu einer Zielposition.",
+    "correct": true,
+    "explanation": "Ziel der inversen Kinematik ist die Berechnung der Gelenkwinkel für eine gegebene Endposition."
+  },
+  {
+    "id": 5,
+    "text": "Reinforcement Learning funktioniert ohne Belohnungen.",
+    "correct": false,
+    "explanation": "Reinforcement Learning basiert auf Belohnungen und Bestrafungen, um Verhalten zu lernen."
+  },
+  {
+    "id": 6,
+    "text": "Der Kalman-Filter wird verwendet, um verrauschte Sensordaten zu glätten.",
+    "correct": true,
+    "explanation": "Der Kalman-Filter ist ein rekursives Schätzverfahren, das verrauschte Daten korrigiert."
+  },
+  {
+    "id": 7,
+    "text": "Forward Kinematics bestimmt die Position eines Robotergelenks anhand einer gewünschten Endposition.",
+    "correct": false,
+    "explanation": "Forward Kinematics berechnet die Endposition anhand gegebener Gelenkwinkel, nicht umgekehrt."
+  },
+  {
+    "id": 8,
+    "text": "Ein Lidar-Sensor misst Entfernungen mithilfe von Licht.",
+    "correct": true,
+    "explanation": "Lidar steht für Light Detection and Ranging – es verwendet Laser zur Abstandsmessung."
+  },
+  {
+    "id": 9,
+    "text": "Kollaborative Roboter (Cobots) sind für die Zusammenarbeit mit Menschen konzipiert.",
+    "correct": true,
+    "explanation": "Cobots sind speziell für sichere, direkte Interaktion mit Menschen entwickelt worden."
+  },
+  {
+    "id": 10,
+    "text": "Neuronale Netze benötigen keine Trainingsdaten.",
+    "correct": false,
+    "explanation": "Neuronale Netze müssen mit großen Mengen an Trainingsdaten trainiert werden."
   }
 ]

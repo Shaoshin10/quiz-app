@@ -1,4 +1,4 @@
-// App.jsx – Vollständige Quiz-App
+// App.jsx – erweitert für Speicherung in question_false.json & question_right.json
 
 import React, { useEffect, useState } from "react";
 import questionsData from "./data/questions.json";
@@ -13,15 +13,52 @@ function App() {
 
   const handleSubmit = () => {
     setSubmitted(true);
-    localStorage.setItem("quiz_fehler", JSON.stringify(getWrongAnswers()));
+    const wrong = getWrongAnswers();
+    const right = getCorrectAnswers();
+    saveResultsToFile("question_false.json", wrong);
+    saveResultsToFile("question_right.json", right);
   };
 
   const handleRetry = () => {
-    window.location.reload();
+    const confirmClear = window.confirm("Willst du den Lernstand (richtig/falsch) wirklich löschen?");
+    if (confirmClear) {
+      localStorage.removeItem("quiz_fehler");
+      downloadFile("question_false.json", "[]");
+      downloadFile("question_right.json", "[]");
+      window.location.reload();
+    }
   };
 
   const getWrongAnswers = () =>
     questionsData.filter((q) => answers[q.id] !== q.correct.toString());
+
+  const getCorrectAnswers = () =>
+    questionsData.filter((q) => answers[q.id] === q.correct.toString());
+
+  const saveResultsToFile = (filename, data) => {
+    const blob = new Blob([JSON.stringify(data, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const downloadFile = (filename, content) => {
+    const blob = new Blob([content], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   const correctCount = questionsData.filter(
     (q) => answers[q.id] === q.correct.toString()
