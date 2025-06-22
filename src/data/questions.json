@@ -1,62 +1,122 @@
 [
   {
-    "id": 1,
-    "text": "Ein RGB-Sensor liefert Tiefeninformationen.",
-    "correct": false,
-    "explanation": "RGB-Sensoren liefern nur Farbinformationen, keine Tiefeninformationen."
-  },
-  {
-    "id": 2,
-    "text": "SLAM steht für Simultaneous Localization and Mapping.",
+    "id": 201,
+    "text": "Was versteht man unter Forward und Inverse Kinematics?",
     "correct": true,
-    "explanation": "Bei SLAM wird gleichzeitig eine Karte erstellt und der Standort geschätzt."
+    "explanation": "Forward Kinematics berechnet die Position des Endeffektors aus Gelenkwinkeln, Inverse Kinematics ermittelt die Gelenkwinkel für eine gewünschte Endposition."
   },
   {
-    "id": 3,
-    "text": "Ein Roboter mit sechs Freiheitsgraden kann sich nur drehen.",
-    "correct": false,
-    "explanation": "Er kann sich drehen und bewegen – Translation + Rotation."
-  },
-  {
-    "id": 4,
-    "text": "Inverse Kinematik berechnet die Gelenkwinkel zu einer Zielposition.",
+    "id": 202,
+    "text": "Wofür wird der Kalman-Filter in der mobilen Robotik eingesetzt?",
     "correct": true,
-    "explanation": "Ziel der inversen Kinematik ist die Berechnung der Gelenkwinkel für eine gegebene Endposition."
+    "explanation": "Zur Lokalisierung eines Roboters – er kombiniert Vorhersage und Sensordaten zu einer geschätzten Position mit Unsicherheit."
   },
   {
-    "id": 5,
-    "text": "Reinforcement Learning funktioniert ohne Belohnungen.",
-    "correct": false,
-    "explanation": "Reinforcement Learning basiert auf Belohnungen und Bestrafungen, um Verhalten zu lernen."
-  },
-  {
-    "id": 6,
-    "text": "Der Kalman-Filter wird verwendet, um verrauschte Sensordaten zu glätten.",
+    "id": 203,
+    "text": "Warum sind Sensorfusion und Unsicherheitsmodellierung wichtig für SLAM?",
     "correct": true,
-    "explanation": "Der Kalman-Filter ist ein rekursives Schätzverfahren, das verrauschte Daten korrigiert."
+    "explanation": "Sie ermöglichen es, verschiedene Sensordaten zu integrieren und deren Unsicherheit korrekt zu berücksichtigen, um zuverlässige Karten und Positionen zu erhalten."
   },
   {
-    "id": 7,
-    "text": "Forward Kinematics bestimmt die Position eines Robotergelenks anhand einer gewünschten Endposition.",
-    "correct": false,
-    "explanation": "Forward Kinematics berechnet die Endposition anhand gegebener Gelenkwinkel, nicht umgekehrt."
-  },
-  {
-    "id": 8,
-    "text": "Ein Lidar-Sensor misst Entfernungen mithilfe von Licht.",
+    "id": 204,
+    "text": "Was sind typische Wahrnehmungsaufgaben für Roboter?",
     "correct": true,
-    "explanation": "Lidar steht für Light Detection and Ranging – es verwendet Laser zur Abstandsmessung."
+    "explanation": "Objekterkennung, Lokalisierung, Umgebungswahrnehmung, Personenerkennung – jeweils mit passenden Sensoren wie Kamera, Lidar oder Mikrofonen."
   },
   {
-    "id": 9,
-    "text": "Kollaborative Roboter (Cobots) sind für die Zusammenarbeit mit Menschen konzipiert.",
+    "id": 205,
+    "text": "Wie unterscheiden sich ROS1 und ROS2?",
     "correct": true,
-    "explanation": "Cobots sind speziell für sichere, direkte Interaktion mit Menschen entwickelt worden."
+    "explanation": "ROS2 basiert auf DDS, ist robuster, unterstützt echte Parallelität und Echtzeitkommunikation – daher besser für industrielle Anwendungen."
   },
   {
-    "id": 10,
-    "text": "Neuronale Netze benötigen keine Trainingsdaten.",
-    "correct": false,
-    "explanation": "Neuronale Netze müssen mit großen Mengen an Trainingsdaten trainiert werden."
+    "id": 206,
+    "text": "Welche Rolle spielt Hyperparameter-Tuning im Reinforcement Learning?",
+    "correct": true,
+    "explanation": "Hyperparameter wie Lernrate und Epsilon beeinflussen stark die Qualität und Geschwindigkeit des Lernprozesses."
+  },
+  {
+    "id": 207,
+    "text": "Warum ist RViz in der Turtlebot-Navigation nützlich?",
+    "correct": true,
+    "explanation": "RViz visualisiert Live-Daten wie Laser-Scans, Kartierung oder Navigation – das hilft beim Debugging und der Parametereinstellung."
+  },
+  {
+    "id": 208,
+    "text": "Was ist die Aufgabe des 'Global Planner' in ROS Navigation?",
+    "correct": true,
+    "explanation": "Der Global Planner berechnet einen Pfad von der aktuellen zur Zielposition basierend auf einer Karte und einem Zielpunkt."
+  },
+  {
+    "id": 209,
+    "text": "Warum ist die Perception-Action-Schleife in der Robotik entscheidend?",
+    "correct": true,
+    "explanation": "Sie sorgt dafür, dass ein Roboter basierend auf Wahrnehmung Entscheidungen trifft und daraufhin handelt – Grundlage intelligenter Systeme."
+  },
+  {
+    "id": 210,
+    "text": "Was bedeutet das 'Uncanny Valley' in der Mensch-Roboter-Interaktion?",
+    "correct": true,
+    "explanation": "Ein zu menschenähnlicher, aber nicht perfekter Roboter kann bei Menschen Unbehagen oder Ablehnung hervorrufen."
+  },
+  {
+    "id": 211,
+    "text": "Was versteht man unter einem Affordance in der Robotik?",
+    "correct": true,
+    "explanation": "Affordance beschreibt, was ein Objekt durch seine Form und Funktion an Handlungsmöglichkeiten bietet – für Mensch oder Roboter."
+  },
+  {
+    "id": 212,
+    "text": "Welche Sensoren sind typischerweise an einem TurtleBot verbaut?",
+    "correct": true,
+    "explanation": "Ein Lidar-Scanner (z.B. LDS-01/02), Kamera, IMU, eventuell Ultraschallsensoren – zur Umgebungs- und Eigenwahrnehmung."
+  },
+  {
+    "id": 213,
+    "text": "Was sind typische Fehlerquellen beim Setup des TurtleBot mit ROS2?",
+    "correct": true,
+    "explanation": "Falsche Netzwerkeinstellungen, veraltete ROS-Kommandos, fehlerhafte Pfade oder inkompatible ROS-Versionen."
+  },
+  {
+    "id": 214,
+    "text": "Was muss bei Deep Learning beachtet werden, wenn man mit Bilddaten arbeitet?",
+    "correct": true,
+    "explanation": "Eine geeignete Netzwerkarchitektur (z.B. CNN), große Datenmengen, korrekte Vorverarbeitung und sinnvolles Tuning sind entscheidend."
+  },
+  {
+    "id": 215,
+    "text": "Was macht ein neuronales Netz in der Objekterkennung?",
+    "correct": true,
+    "explanation": "Es lernt, Bildmerkmale automatisch zu extrahieren und klassifiziert Objekte z. B. mit Hilfe von Bounding Boxes und Wahrscheinlichkeiten."
+  },
+  {
+    "id": 216,
+    "text": "Warum ist Natural Language Processing (NLP) wichtig für soziale Roboter?",
+    "correct": true,
+    "explanation": "NLP ermöglicht Sprachverstehen und sinnvolle Reaktionen – eine Grundvoraussetzung für natürlich wirkende Mensch-Roboter-Interaktion."
+  },
+  {
+    "id": 217,
+    "text": "Wie können Roboter menschliche Emotionen in Sprache ausdrücken?",
+    "correct": true,
+    "explanation": "Durch Veränderung von Stimmlage, Tonhöhe, Betonung und Sprechgeschwindigkeit – z. B. durch ein TTS-System mit emotionalen Parametern."
+  },
+  {
+    "id": 218,
+    "text": "Was ist ein 'Pick-and-Place'-Task?",
+    "correct": true,
+    "explanation": "Ein Greifroboter greift ein Objekt, bewegt es und legt es gezielt an einem anderen Ort ab – typisches Anwendungsszenario in der Industrie."
+  },
+  {
+    "id": 219,
+    "text": "Welche Interaktionsformen sind in der HRI besonders wichtig?",
+    "correct": true,
+    "explanation": "Verbal (Sprache), visuell (Display), räumlich (Bewegung), zeitlich (Reaktionszeit) und verhaltensbasiert (Gestik, Mimik, Feedbackverhalten)."
+  },
+  {
+    "id": 220,
+    "text": "Was macht eine gute Roboterpersönlichkeit in einer sozialen Anwendung aus?",
+    "correct": true,
+    "explanation": "Sie ist situationsangemessen, verständlich, empathisch, konsistent und an den erwarteten Anwendungsbereich angepasst."
   }
 ]
