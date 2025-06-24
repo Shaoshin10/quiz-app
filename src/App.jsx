@@ -35,16 +35,21 @@ function App() {
   };
 
   const handleNext = () => {
-    const updatedList = status !== "richtig"
-      ? [...questions.slice(0, currentIndex + 1), currentQuestion, ...questions.slice(currentIndex + 1)]
-      : questions;
+  let updatedList = [...questions];
 
-    setQuestions(updatedList);
-    setCurrentIndex((prev) => prev + 1);
-    setUserInput("");
-    setStatus(null);
-    setShowFeedback(false);
-  };
+  if (status !== "richtig") {
+    const insertOffset = Math.floor(Math.random() * 4) + 3; // 3–6 Fragen weiter hinten
+    const insertPos = Math.min(currentIndex + insertOffset, questions.length);
+    updatedList.splice(insertPos, 0, currentQuestion);
+  }
+
+  setQuestions(updatedList);
+  setCurrentIndex((prev) => prev + 1);
+  setUserInput("");
+  setStatus(null);
+  setShowFeedback(false);
+};
+
 
   const finishQuiz = () => {
     saveResultsToFile("questions_wrong.json", wrongList);
