@@ -1,122 +1,87 @@
 [
   {
-    "id": 301,
-    "text": "Forward Kinematics berechnet die Gelenkwinkel aus der Endposition.",
-    "correct": false,
-    "explanation": "Forward Kinematics berechnet die Endposition aus gegebenen Gelenkwinkeln – nicht umgekehrt."
+    "id": 517,
+    "text": "Was beschreibt die Kinematik in der Robotik und wie grenzt sie sich von der Dynamik ab?",
+    "answer": "Kinematik beschreibt die Bewegung von Robotern ohne Berücksichtigung von Kräften. Die Dynamik hingegen bezieht Kräfte und Momente mit ein."
   },
   {
-    "id": 302,
-    "text": "Der Kalman-Filter wird in der mobilen Robotik zur Lokalisierung eingesetzt.",
-    "correct": true,
-    "explanation": "Der Kalman-Filter kombiniert Vorhersage und Sensordaten, um die Position eines Roboters zu schätzen."
+    "id": 518,
+    "text": "Welche Gelenktypen kommen in Robotern vor und wie unterscheiden sie sich?",
+    "answer": "Es gibt hauptsächlich Rotationsgelenke (revolute joints) für Drehbewegungen und translatorische Gelenke (prismatische joints) für lineare Bewegungen."
   },
   {
-    "id": 303,
-    "text": "Sensorfusion ist für SLAM irrelevant.",
-    "correct": false,
-    "explanation": "Sensorfusion ist essenziell für SLAM, um verschiedene Sensordaten zu integrieren und Unsicherheit zu berücksichtigen."
+    "id": 519,
+    "text": "Was versteht man unter Freiheitsgraden eines Roboters und wie viele sind typisch?",
+    "answer": "Ein Freiheitsgrad (DoF) ist eine unabhängige Bewegungsmöglichkeit. Typische Roboterarme haben 6 Freiheitsgrade."
   },
   {
-    "id": 304,
-    "text": "Objekterkennung gehört zu den typischen Wahrnehmungsaufgaben eines Roboters.",
-    "correct": true,
-    "explanation": "Wahrnehmung umfasst u.a. Objekterkennung, Lokalisierung und Umgebungserfassung."
+    "id": 520,
+    "text": "Was beschreibt der Konfigurationsraum (C-Space) eines Roboters?",
+    "answer": "Der C-Space ist die Menge aller möglichen Konfigurationen eines Roboters, meist definiert durch seine Gelenkwinkel."
   },
   {
-    "id": 305,
-    "text": "ROS1 unterstützt Echtzeitkommunikation und ist moderner als ROS2.",
-    "correct": false,
-    "explanation": "ROS2 basiert auf DDS und unterstützt echte Parallelität und Echtzeit – damit moderner als ROS1."
+    "id": 521,
+    "text": "Was versteht man unter dem Arbeitsraum eines Roboters?",
+    "answer": "Der Arbeitsraum ist der Bereich im Raum, den der Endeffektor eines Roboters erreichen kann."
   },
   {
-    "id": 306,
-    "text": "Hyperparameter im Reinforcement Learning haben keinen Einfluss auf das Lernen.",
-    "correct": false,
-    "explanation": "Hyperparameter wie Lernrate und Epsilon steuern das Lernverhalten und beeinflussen Qualität und Geschwindigkeit."
+    "id": 522,
+    "text": "Wie unterscheidet sich der Task Space vom Konfigurationsraum?",
+    "answer": "Der Task Space ist der physische Raum, in dem der Roboter arbeitet, während der C-Space die möglichen Zustände des Roboters beschreibt."
   },
   {
-    "id": 307,
-    "text": "RViz ist ein Tool zur Visualisierung von Roboterdaten in ROS.",
-    "correct": true,
-    "explanation": "RViz stellt z. B. Lidar-Scans, Kartierung und Navigation grafisch dar – sehr hilfreich beim Debuggen."
+    "id": 523,
+    "text": "Welche Rolle spielen Transformationen in der Robotik?",
+    "answer": "Transformationen beschreiben Lage und Orientierung von Koordinatensystemen relativ zueinander."
   },
   {
-    "id": 308,
-    "text": "Der Global Planner in ROS berechnet lokale Bewegungen.",
-    "correct": false,
-    "explanation": "Der Global Planner plant Pfade auf globaler Ebene, der Local Planner ist für lokale Bewegungen zuständig."
+    "id": 524,
+    "text": "Was sind DH-Parameter und wozu werden sie verwendet?",
+    "answer": "DH-Parameter sind ein standardisiertes System zur Beschreibung der Geometrie von Roboterarmen."
   },
   {
-    "id": 309,
-    "text": "Die Perception-Action-Schleife beschreibt die Kopplung von Wahrnehmung und Handlung.",
-    "correct": true,
-    "explanation": "Ein Roboter nimmt Informationen auf und reagiert entsprechend – diese Rückkopplung ist zentral in der Robotik."
+    "id": 525,
+    "text": "Wie funktioniert die Vorwärtskinematik?",
+    "answer": "Bei der Vorwärtskinematik wird aus den Gelenkwinkeln die Position des Endeffektors berechnet."
   },
   {
-    "id": 310,
-    "text": "Das 'Uncanny Valley' beschreibt ein besonders vertrauenswürdiges Verhalten von Robotern.",
-    "correct": false,
-    "explanation": "Das 'Uncanny Valley' beschreibt die Ablehnung zu menschenähnlicher, aber nicht perfekter Robotik."
+    "id": 526,
+    "text": "Wofür wird die Inverse Kinematik verwendet?",
+    "answer": "Sie dient dazu, aus einer gewünschten Endeffektorposition die dafür nötigen Gelenkwinkel zu berechnen."
   },
   {
-    "id": 311,
-    "text": "Ein Affordance beschreibt, welche Funktionen ein Objekt anbietet.",
-    "correct": true,
-    "explanation": "Affordances sind Hinweise auf Nutzungsmöglichkeiten, die ein Objekt durch Form oder Aussehen vermittelt."
+    "id": 527,
+    "text": "Wie verknüpft man mehrere Koordinatensysteme bei Robotern?",
+    "answer": "Durch sukzessive Anwendung von Transformationsmatrizen."
   },
   {
-    "id": 312,
-    "text": "Ein TurtleBot hat typischerweise keinen Lidar-Sensor.",
-    "correct": false,
-    "explanation": "Ein TurtleBot besitzt normalerweise einen Lidar-Sensor für Navigation und Mapping."
+    "id": 528,
+    "text": "Was versteht man unter Lokalisierung bei mobilen Robotern?",
+    "answer": "Die Bestimmung der eigenen Position im Raum mittels Sensorik wie Odometrie, GPS, Lidar."
   },
   {
-    "id": 313,
-    "text": "Fehler beim TurtleBot-Setup entstehen häufig durch falsche Netzwerkkonfigurationen.",
-    "correct": true,
-    "explanation": "Netzwerkprobleme, falsche Pfade und Versionen sind häufige Ursachen für Setup-Fehler."
+    "id": 529,
+    "text": "Welche Aufgabe übernimmt ein Kalman-Filter in der Robotik?",
+    "answer": "Er schätzt den Zustand eines Systems aus verrauschten Sensordaten, z. B. Position oder Geschwindigkeit."
   },
   {
-    "id": 314,
-    "text": "Bei Deep Learning mit Bilddaten ist eine große Datenmenge unwichtig.",
-    "correct": false,
-    "explanation": "Deep Learning erfordert große, vielfältige Datensätze und sorgfältige Vorverarbeitung, um sinnvoll zu lernen."
+    "id": 530,
+    "text": "Was ist Sensorfusion und warum ist sie wichtig?",
+    "answer": "Sensorfusion kombiniert Informationen aus verschiedenen Sensoren zur robusteren Zustandsschätzung."
   },
   {
-    "id": 315,
-    "text": "Neuronale Netze in der Objekterkennung arbeiten mit Merkmalsextraktion und Klassifikation.",
-    "correct": true,
-    "explanation": "Sie erkennen Muster im Bild und ordnen sie vortrainierten Klassen zu – z. B. mit CNNs."
+    "id": 531,
+    "text": "Was misst die Odometrie und welche Schwächen hat sie?",
+    "answer": "Odometrie misst Bewegung durch Radrotationen, ist aber anfällig für Drift."
   },
   {
-    "id": 316,
-    "text": "NLP ist für soziale Roboter unwichtig.",
-    "correct": false,
-    "explanation": "NLP ist grundlegend, um menschliche Sprache zu verstehen und sinnvoll zu antworten."
+    "id": 532,
+    "text": "Welche Schritte umfasst die Navigation eines mobilen Roboters?",
+    "answer": "Typische Schritte sind: Kartenerstellung, Lokalisierung, Pfadplanung und -verfolgung."
   },
   {
-    "id": 317,
-    "text": "TTS-Systeme ermöglichen emotional gefärbte Sprachausgabe bei Robotern.",
-    "correct": true,
-    "explanation": "Über Tonhöhe, Lautstärke und Rhythmus kann Sprachsynthese emotional angepasst werden."
-  },
-  {
-    "id": 318,
-    "text": "Pick-and-Place ist eine einfache Form der Objektverfolgung.",
-    "correct": false,
-    "explanation": "Pick-and-Place bezieht sich auf gezieltes Greifen und Ablegen, nicht auf kontinuierliches Verfolgen."
-  },
-  {
-    "id": 319,
-    "text": "Bewegung, Sprache und Mimik sind relevante Interaktionsformen in der HRI.",
-    "correct": true,
-    "explanation": "Diese Kanäle sind für die intuitive und glaubwürdige Mensch-Roboter-Kommunikation entscheidend."
-  },
-  {
-    "id": 320,
-    "text": "Eine gute Roboterpersönlichkeit ist empathisch, konsistent und anwendungsbezogen.",
-    "correct": true,
-    "explanation": "Die Persönlichkeit eines Roboters sollte zur Anwendung passen und positive Interaktion fördern."
+    "id": 533,
+    "text": "Welche Sensoren werden zur Umgebungserfassung genutzt?",
+    "answer": "Übliche Sensoren sind Lidar, Kamera, IMU, GPS und Ultraschall."
   }
 ]
