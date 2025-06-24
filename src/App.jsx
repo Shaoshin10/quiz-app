@@ -1,192 +1,138 @@
-// App.jsx – gleiche Logik, aber visuell als Tabelle gestaltet
+// App.jsx – Einzelabfrage-Modus mit Feedback und Wiederholung falscher Fragen
 
 import React, { useEffect, useState } from "react";
-import questionsData from "./data/questions.json";
+import allQuestions from "./data/questions.json";
 import "./styles.css";
 
 function App() {
-  const [answers, setAnswers] = useState({});
-  const [explanations, setExplanations] = useState({});
-  const [submitted, setSubmitted] = useState(false);
+  const [questions, setQuestions] = useState(shuffle([...allQuestions]));
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [userInput, setUserInput] = useState("");
+  const [status, setStatus] = useState(null); // "richtig", "falsch", "teilweise"
+  const [showExplanation, setShowExplanation] = useState(false);
+  const [wrongList, setWrongList] = useState([]);
+  const [rightList, setRightList] = useState([]);
 
-  const handleAnswer = (id, value) => {
-    setAnswers({ ...answers, [id]: value });
-  };
-
-  const handleTextChange = (id, value) => {
-    setExplanations({ ...explanations, [id]: value });
-  };
-
-  const includesKeyConcept = (userText, explanation) => {
-    if (!userText) return false;
-    const keywords = explanation.toLowerCase().split(/[^a-zäöüß]+/).filter(k => k.length > 4);
-    return keywords.some(word => userText.toLowerCase().includes(word));
-  };
+  const currentQuestion = questions[currentIndex];
 
   const handleSubmit = () => {
-    setSubmitted(true);
-    const wrong = [];
-    const right = [];
+    const correct = currentQuestion.correct;
+    const explanation = currentQuestion.explanation.toLowerCase();
+    const answer = userInput.toLowerCase().trim();
 
-    questionsData.forEach(q => {
-      const userAns = answers[q.id];
-      const userText = explanations[q.id] || "";
+    const isCorrect = (correct && answer === "richtig") || (!correct && answer === "falsch");
+    const isPartial = !isCorrect && answer.length > 4 && explanation.includesAny(answer);
 
-      if (userAns === q.correct.toString()) {
-        right.push(q);
-      } else {
-        if (userAns === "false" && q.correct === true && includesKeyConcept(userText, q.explanation)) {
-          q.note = "Teilweise richtig (Erklärung akzeptabel)";
-        }
-        wrong.push({ ...q, userText });
-      }
-    });
-
-    saveResultsToFile("question_false.json", wrong);
-    saveResultsToFile("question_right.json", right);
-  };
-
-  const handleRetry = () => {
-    const confirmClear = window.confirm("Willst du den Lernstand (richtig/falsch) wirklich löschen?");
-    if (confirmClear) {
-      downloadFile("question_false.json", "[]");
-      downloadFile("question_right.json", "[]");
-      window.location.reload();
+    if (isCorrect) {
+      setStatus("richtig");
+      setRightList([...rightList, currentQuestion]);
+    } else if (isPartial) {
+      setStatus("teilweise");
+      setWrongList([...wrongList, { ...currentQuestion, userText: userInput }]);
+    } else {
+      setStatus("falsch");
+      setWrongList([...wrongList, { ...currentQuestion, userText: userInput }]);
     }
+    setShowExplanation(true);
   };
 
-  const saveResultsToFile = (filename, data) => {
-    const blob = new Blob([JSON.stringify(data, null, 2)], {
-      type: "application/json",
-    });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+  const handleNext = () => {
+    let nextList = [...questions];
+    if (status !== "richtig") {
+      const randomIndex = Math.floor(Math.random() * (questions.length - currentIndex)) + currentIndex + 1;
+      nextList.splice(randomIndex, 0, currentQuestion);
+    }
+    setQuestions(nextList);
+    setCurrentIndex((prev) => prev + 1);
+    setUserInput("");
+    setStatus(null);
+    setShowExplanation(false);
   };
 
-  const downloadFile = (filename, content) => {
-    const blob = new Blob([content], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const finishQuiz = () => {
+    saveResultsToFile("question_false.json", wrongList);
+    saveResultsToFile("question_right.json", rightList);
+    alert("Quiz abgeschlossen!");
+    window.location.reload();
   };
-
-  const correctCount = questionsData.filter(
-    (q) => answers[q.id] === q.correct.toString()
-  ).length;
 
   return (
-    <div className="p-4 max-w-6xl mx-auto font-sans">
-      <h1 className="text-3xl font-bold mb-6">🤖 Intelligente Robotik – Quiz</h1>
+    <div className="p-6 max-w-3xl mx-auto font-sans">
+      <h1 className="text-2xl font-bold mb-4">🧠 Robotik Quiz – Einzelmodus</h1>
 
-      <table className="table-auto w-full border-collapse border border-gray-300">
-        <thead>
-          <tr className="bg-gray-100">
-            <th className="border p-2 text-left">Nr.</th>
-            <th className="border p-2 text-left">Aussage</th>
-            <th className="border p-2 text-center">Antwort</th>
-            <th className="border p-2 text-center">Erklärung (falls falsch)</th>
-            <th className="border p-2 text-center">Auswertung</th>
-          </tr>
-        </thead>
-        <tbody>
-          {questionsData.map((q, index) => {
-            const userAnswer = answers[q.id];
-            const userText = explanations[q.id] || "";
-            const isCorrect = userAnswer === q.correct.toString();
-            const isPartial = !isCorrect && includesKeyConcept(userText, q.explanation);
+      {currentIndex < questions.length ? (
+        <div className="space-y-4">
+          <p className="text-lg font-medium">
+            {currentIndex + 1}. {currentQuestion.text}
+          </p>
 
-            return (
-              <tr key={q.id} className="align-top">
-                <td className="border p-2">{index + 1}</td>
-                <td className="border p-2 w-1/3">{q.text}</td>
-                <td className="border p-2 text-center">
-                  <label>
-                    <input
-                      type="radio"
-                      name={`q${q.id}`}
-                      value="true"
-                      disabled={submitted}
-                      checked={userAnswer === "true"}
-                      onChange={(e) => handleAnswer(q.id, e.target.value)}
-                    /> Richtig
-                  </label>
-                  <br />
-                  <label>
-                    <input
-                      type="radio"
-                      name={`q${q.id}`}
-                      value="false"
-                      disabled={submitted}
-                      checked={userAnswer === "false"}
-                      onChange={(e) => handleAnswer(q.id, e.target.value)}
-                    /> Falsch
-                  </label>
-                </td>
-                <td className="border p-2">
-                  {!submitted && userAnswer === "false" && (
-                    <textarea
-                      rows="2"
-                      className="w-full border px-2 py-1"
-                      placeholder="Wie wäre es richtig formuliert?"
-                      value={explanations[q.id] || ""}
-                      onChange={(e) => handleTextChange(q.id, e.target.value)}
-                    ></textarea>
-                  )}
-                  {submitted && !isCorrect && (
-                    <p className="text-sm italic">{userText}</p>
-                  )}
-                </td>
-                <td className="border p-2 text-sm">
-                  {submitted && (
-                    isCorrect ? (
-                      <span className="text-green-600">✅ Richtig</span>
-                    ) : isPartial ? (
-                      <span className="text-yellow-600">🟡 Teilweise richtig – {q.explanation}</span>
-                    ) : (
-                      <span className="text-red-600">❌ Falsch – {q.explanation}</span>
-                    )
-                  )}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+          <input
+            type="text"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            disabled={showExplanation}
+            placeholder="Richtig oder Falsch (ggf. mit Erklärung)"
+            className="w-full border px-3 py-2 rounded"
+          />
 
-      <div className="mt-6">
-        {!submitted ? (
-          <button
-            onClick={handleSubmit}
-            className="bg-blue-600 text-white px-6 py-2 rounded"
-          >
-            Auswerten
-          </button>
-        ) : (
-          <div className="mt-4">
-            <p>
-              Du hast <strong>{correctCount}</strong> von <strong>{questionsData.length}</strong> richtig beantwortet.
-            </p>
+          {!showExplanation ? (
             <button
-              onClick={handleRetry}
-              className="mt-2 bg-green-600 text-white px-6 py-2 rounded"
+              onClick={handleSubmit}
+              className="bg-blue-600 text-white px-4 py-2 rounded"
             >
-              Neuer Versuch
+              Antwort absenden
             </button>
-          </div>
-        )}
-      </div>
+          ) : (
+            <div className="space-y-2">
+              {status === "richtig" && <p className="text-green-600">✅ Deine Antwort ist korrekt!</p>}
+              {status === "teilweise" && <p className="text-yellow-600">🟡 Teilweise richtig – {currentQuestion.explanation}</p>}
+              {status === "falsch" && <p className="text-red-600">❌ Falsch – {currentQuestion.explanation}</p>}
+
+              <button
+                onClick={handleNext}
+                className="bg-green-600 text-white px-4 py-2 rounded"
+              >
+                Nächste Frage
+              </button>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="text-center">
+          <p className="mb-4">Du hast alle Fragen beantwortet.</p>
+          <button
+            onClick={finishQuiz}
+            className="bg-blue-600 text-white px-4 py-2 rounded"
+          >
+            Ergebnisse speichern & Quiz neu starten
+          </button>
+        </div>
+      )}
     </div>
   );
+}
+
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+String.prototype.includesAny = function (input) {
+  const words = input.split(/[^a-zäöüß]+/).filter((w) => w.length > 4);
+  return words.some((word) => this.includes(word));
+};
+
+function saveResultsToFile(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {
+    type: "application/json",
+  });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
 }
 
 export default App;
