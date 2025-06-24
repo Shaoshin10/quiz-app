@@ -1,6 +1,4 @@
-// App.jsx – Einzelabfrage-Modus mit Feedback und Wiederholung falscher Fragen
-
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import allQuestions from "./data/questions.json";
 import "./styles.css";
 
@@ -8,22 +6,21 @@ function App() {
   const [questions, setQuestions] = useState(shuffle([...allQuestions]));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userInput, setUserInput] = useState("");
-  const [status, setStatus] = useState(null); // "richtig", "falsch", "teilweise"
-  const [showExplanation, setShowExplanation] = useState(false);
+  const [status, setStatus] = useState(null); // "richtig", "teilweise", "falsch"
+  const [showFeedback, setShowFeedback] = useState(false);
   const [wrongList, setWrongList] = useState([]);
   const [rightList, setRightList] = useState([]);
 
   const currentQuestion = questions[currentIndex];
 
   const handleSubmit = () => {
-    const correct = currentQuestion.correct;
-    const explanation = currentQuestion.explanation.toLowerCase();
-    const answer = userInput.toLowerCase().trim();
+    const userAnswer = userInput.toLowerCase().trim();
+    const expected = currentQuestion.answer.toLowerCase();
 
-    const isCorrect = (correct && answer === "richtig") || (!correct && answer === "falsch");
-    const isPartial = !isCorrect && answer.length > 4 && explanation.includesAny(answer);
+    const isExact = expected === userAnswer;
+    const isPartial = userAnswer.length > 4 && expected.includesAny(userAnswer);
 
-    if (isCorrect) {
+    if (isExact) {
       setStatus("richtig");
       setRightList([...rightList, currentQuestion]);
     } else if (isPartial) {
@@ -33,32 +30,32 @@ function App() {
       setStatus("falsch");
       setWrongList([...wrongList, { ...currentQuestion, userText: userInput }]);
     }
-    setShowExplanation(true);
+
+    setShowFeedback(true);
   };
 
   const handleNext = () => {
-    let nextList = [...questions];
-    if (status !== "richtig") {
-      const randomIndex = Math.floor(Math.random() * (questions.length - currentIndex)) + currentIndex + 1;
-      nextList.splice(randomIndex, 0, currentQuestion);
-    }
-    setQuestions(nextList);
+    const updatedList = status !== "richtig"
+      ? [...questions.slice(0, currentIndex + 1), currentQuestion, ...questions.slice(currentIndex + 1)]
+      : questions;
+
+    setQuestions(updatedList);
     setCurrentIndex((prev) => prev + 1);
     setUserInput("");
     setStatus(null);
-    setShowExplanation(false);
+    setShowFeedback(false);
   };
 
   const finishQuiz = () => {
-    saveResultsToFile("question_false.json", wrongList);
-    saveResultsToFile("question_right.json", rightList);
+    saveResultsToFile("questions_wrong.json", wrongList);
+    saveResultsToFile("questions_right.json", rightList);
     alert("Quiz abgeschlossen!");
     window.location.reload();
   };
 
   return (
     <div className="p-6 max-w-3xl mx-auto font-sans">
-      <h1 className="text-2xl font-bold mb-4">🧠 Robotik Quiz – Einzelmodus</h1>
+      <h1 className="text-2xl font-bold mb-4">🤖 Robotik Quiz (Freitext-Modus)</h1>
 
       {currentIndex < questions.length ? (
         <div className="space-y-4">
@@ -66,16 +63,16 @@ function App() {
             {currentIndex + 1}. {currentQuestion.text}
           </p>
 
-          <input
-            type="text"
+          <textarea
+            rows={4}
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
-            disabled={showExplanation}
-            placeholder="Richtig oder Falsch (ggf. mit Erklärung)"
+            disabled={showFeedback}
+            placeholder="Deine Antwort eingeben..."
             className="w-full border px-3 py-2 rounded"
           />
 
-          {!showExplanation ? (
+          {!showFeedback ? (
             <button
               onClick={handleSubmit}
               className="bg-blue-600 text-white px-4 py-2 rounded"
@@ -84,9 +81,9 @@ function App() {
             </button>
           ) : (
             <div className="space-y-2">
-              {status === "richtig" && <p className="text-green-600">✅ Deine Antwort ist korrekt!</p>}
-              {status === "teilweise" && <p className="text-yellow-600">🟡 Teilweise richtig – {currentQuestion.explanation}</p>}
-              {status === "falsch" && <p className="text-red-600">❌ Falsch – {currentQuestion.explanation}</p>}
+              {status === "richtig" && <p className="text-green-600">✅ Richtig!</p>}
+              {status === "teilweise" && <p className="text-yellow-600">🟡 Teilweise korrekt. Richtige Antwort: {currentQuestion.answer}</p>}
+              {status === "falsch" && <p className="text-red-600">❌ Falsch. Richtige Antwort: {currentQuestion.answer}</p>}
 
               <button
                 onClick={handleNext}
@@ -117,7 +114,7 @@ function shuffle(array) {
 }
 
 String.prototype.includesAny = function (input) {
-  const words = input.split(/[^a-zäöüß]+/).filter((w) => w.length > 4);
+  const words = input.split(/\W+/).filter((w) => w.length > 4);
   return words.some((word) => this.includes(word));
 };
 
